@@ -23,7 +23,13 @@ OBJECTS = $(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
 DEPS = $(OBJECTS:.o=.d)
 
 # flags #
-COMPILE_FLAGS = -std=c++11 -Wall -Wextra -g
+CFLAGS += -std=c++17
+CFLAGS += -Wall
+CFLAGS += -Wextra
+CFLAGS += -pedantic
+CFLAGS += -Wno-misleading-indentation
+
+CFLAGS_RELEASE += -O2
 INCLUDES = -I $(INCLUDE_PATH) -I /usr/local/include
 # Space-separated pkg-config libraries used by this project
 LIBS =
@@ -32,7 +38,7 @@ LIBS =
 default_target: release
 
 .PHONY: release
-release: export CXXFLAGS := $(CXXFLAGS) $(COMPILE_FLAGS)
+release: export CXXFLAGS := $(CXXFLAGS) $(CFLAGS) $(CFLAGS_RELEASE)
 release: dirs
 	@$(MAKE) all
 
