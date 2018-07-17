@@ -22,8 +22,12 @@ int main(int argc, char *argv[])
     cout << endl;
 
     vector<uint> W = {2, 3, 4, 7, 11};
-    SumApproximation result = SimpleKnapsack(W, 5.0);
+    SumApproximation result = simple_knapsack(W, .5);
     for (uint c = 0; c <= 50; c++) cout << "C = " << c << " -> " <<  result.query(c) << endl;
 
+    cout << endl << "--------------" << endl << endl;
+
+    SumApproximation good_result = good_knapsack(W, .3);
+    for (uint c = 0; c <= 50; c++) cout << "C = " << c << " -> " <<  good_result.query(c) << endl;
     return 0;
 }
